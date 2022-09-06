@@ -6,24 +6,24 @@ export const spice = {
     name: "アイルインクペースト",
     schedule: schedule.four,
     amount: 43,
-    category: [category.spice, category.marine],
+    category: [category.spice.key, category.marine.key],
   },
   1: {
     name: "開拓工房のバター",
     schedule: schedule.four,
     amount: 52,
-    category: [category.spice, category.animal],
+    category: [category.spice.key, category.animal.key],
   },
   2: {
     name: "アイルトマトケチャップ",
     schedule: schedule.four,
     amount: 62,
-    category: [category.spice],
+    category: [category.spice.key],
   },
   3: {
     name: "アイルベリージャム",
     schedule: schedule.six,
     amount: 93,
-    category: [category.spice],
+    category: [category.spice.key],
   }
 };
