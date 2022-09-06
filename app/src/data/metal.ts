@@ -1,7 +1,7 @@
 import { schedule } from "./schedule";
 import { category } from "./category";
 
-export const chemical = {
+export const metal = {
   0: {
     name: "アイルバルビュート",
     schedule: schedule.six,
