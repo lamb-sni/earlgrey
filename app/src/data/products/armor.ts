@@ -1,5 +1,5 @@
-import { schedule } from "./schedule";
-import { category } from "./category";
+import { schedule } from "../schedule";
+import { category } from "../category";
 
 export const armor = {
   0: {
