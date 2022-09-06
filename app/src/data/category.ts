@@ -1,7 +1,7 @@
 export const category = {
   food: "保存食",
   armor: "防具",
-  coocked: "料理",
+  cooked: "料理",
   snack: "菓子",
   grocery: "日用品",
   furnishing: "調度品",
