@@ -3,19 +3,19 @@ import { category } from "./category";
 
 export const accessory = {
   0: {
-    name: "アイルウッドネックレス	",
+    name: "アイルウッドネックレス",
     schedule: schedule.four,
     amount: 33,
     category: [category.accessory, category.wood],
   },
   1: {
-    name: "アイルファングイヤリング	",
+    name: "アイルファングイヤリング",
     schedule: schedule.four,
     amount: 52,
     category: [category.accessory, category.animal],
   },
   2: {
-    name: "アイルコーラルリング	",
+    name: "アイルコーラルリング",
     schedule: schedule.six,
     amount: 50,
     category: [category.accessory, category.marine],
@@ -27,13 +27,13 @@ export const accessory = {
     category: [category.accessory, category.cloth],
   },
   4: {
-    name: "アイルクォーツリング	",
+    name: "アイルクォーツリング",
     schedule: schedule.eight,
     amount: 86,
     category: [category.accessory, category.ceramic],
   },
   5: {
-    name: "アイルシルバーイヤーカフ	",
+    name: "アイルシルバーイヤーカフ",
     schedule: schedule.eight,
     amount: 163,
     category: [category.accessory, category.metal],
