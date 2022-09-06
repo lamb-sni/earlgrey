@@ -1,24 +1,74 @@
 import * as React from 'react';
-import { category } from '../data/category';
-import { products } from "../data";
+import { categories, CategoriesKey } from '../data/categories';
+import { schedule } from '../data/schedule';
+import { products, ProductsKey } from "../data";
 
 const Page = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState("" as CategoriesKey);
+  const [selectedProductDetail, setSelectedProductDetail] = React.useState({
+    name: "",
+    schedule: schedule.four,
+    amount: 0,
+    categories: [] as string[],
+  });
 
   const createCategoryProductsDOM = () => {
     if (!selectedCategory) {
-      return <p>カテゴリが選択されていません</p>
+      return <p>カテゴリが選択されていません</p>;
     }
+    const category = categories[selectedCategory];
+    const label = category.label;
+    const product = products[selectedCategory];
 
-    const categoryKey = Object.keys(category).map(v => {
-      if (category[v] === selectedCategory) {
-        return v;
-      }
-      return null;
-    }).filter(v => v)[0];
-    console.log(categoryKey);
+    return (
+      <>
+        <p>選択中のカテゴリ：{label}</p>
+        <ul>
+          {Object.values(product).map((d, idx) => {
+            return (
+              <li key={d.name}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedProductDetail(d);
+                  }}
+                >
+                  {d.name}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </>
+    );
+  };
 
-    return <p>{selectedCategory}</p>
+  const createRelationProductDOM = () => {
+    if (!selectedProductDetail.name) {
+      return <p>島産品が選択されていません</p>;;
+    }
+    const detail = selectedProductDetail;
+    const relationCategories = detail.categories;
+    const relationProducts = relationCategories.map(v => {
+      return products[v as ProductsKey];
+    });
+    const relationProductsName = relationProducts.map(d => {
+      return Object.values(d).map(v => v.name);
+    }).flatMap(v => v).filter(v => v !== detail.name);
+
+    return (
+      <>
+        <p>選択中の島産品：{detail.name}</p>
+        <p>あわせて生産ボーナスの対象となる島産品：</p>
+        <ul>
+          {relationProductsName.map(d => {
+            return (
+              <li key={d}>{d}</li>
+            );
+          })}
+        </ul>
+      </>
+    );
   };
 
   return (
@@ -26,14 +76,14 @@ const Page = () => {
       <main>
         <section>
           <ul>
-            {Object.values(category).map(v => {
+            {Object.values(categories).map(d => {
               return (
-                <li key={v}>
+                <li key={d.key}>
                   <button
                     type="button"
-                    onClick={() => {setSelectedCategory(v)}}
+                    onClick={() => { setSelectedCategory(d.key as CategoriesKey) }}
                   >
-                    {v}
+                    {d.label}
                   </button>
                 </li>
               );
@@ -43,6 +93,7 @@ const Page = () => {
 
         <section>
           {createCategoryProductsDOM()}
+          {createRelationProductDOM()}
         </section>
       </main>
     </div>
