@@ -1,15 +1,15 @@
 export const schedule = {
-  0: {
+  four: {
     id: 0,
     value: 4,
     label: "4時間"
   },
-  1: {
+  six: {
     id: 1,
     value: 6,
     label: "4時間"
   },
-  2: {
+  eight: {
     id: 2,
     value: 8,
     label: "8時間"
