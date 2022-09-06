@@ -1,4 +1,4 @@
-export const category = {
+export const categories = {
   food: {
     key: "food",
     label: "保存食",
@@ -64,3 +64,5 @@ export const category = {
     label: "窯業製品"
   },
 };
+
+export type CategoriesKey = keyof typeof categories;

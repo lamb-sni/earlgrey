@@ -33,3 +33,5 @@ export const products = {
   weapon,
   wood
 };
+
+export type ProductsKey = keyof typeof products;
