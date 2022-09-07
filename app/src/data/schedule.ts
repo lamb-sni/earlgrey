@@ -36,3 +36,5 @@ export const schedulePattern = {
     label: "8時間 8時間 8時間"
   }
 };
+
+export type ScheduleObj = keyof typeof schedule;
