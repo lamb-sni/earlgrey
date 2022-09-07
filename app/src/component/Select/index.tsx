@@ -1,4 +1,5 @@
 import * as React from "react";
+import ClassNames  from "classnames";
 import style from "./style.module.scss";
 
 interface Props {
@@ -10,21 +11,39 @@ interface Props {
 }
 
 const Select = (props: Props) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedLabel, setSelectedLabel] = React.useState("選択してください");
+
   return (
-    <ul>
-      {props.data.map(d => {
-        return (
-          <li key={d.value}>
-            <button
-              type="button"
-              onClick={() => { props.onClick(d.value); }}
+    <div className={style.wrapper}>
+      <div
+        className={style.selected}
+        onClick={() => { setIsOpen(!isOpen); }}
+      >
+        <span>
+          {selectedLabel}
+        </span>
+      </div>
+      <ul className={ClassNames(style.select, {
+        [style.isHide]: !isOpen
+      })}>
+        {props.data.map(d => {
+          return (
+            <li
+              className={style.item}
+              onClick={() => {
+                props.onClick(d.value);
+                setSelectedLabel(d.label);
+                setIsOpen(false);
+              }}
+              key={d.value}
             >
-              {d.label}
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+              <span>{d.label}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
