@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSetRecoilState } from "recoil"
-import { selectedCategoryAtom } from "../state/indexAtom";
+import { selectedCategoryAtom } from "../state/atom";
 import { categories, CategoriesKey } from '../data/categories';
 import CategoryProducts from "./organisms/CategoryProducts";
 import RelationProduct from './organisms/RelationProducts';

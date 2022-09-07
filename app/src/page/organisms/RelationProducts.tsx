@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRecoilValue } from "recoil"
-import { selectedProductDetailAtom } from "../../state/indexAtom";
+import { selectedProductDetailAtom } from "../../state/atom";
 import { products, ProductsKey } from "../../data";
 
 const RelationProduct = () => {

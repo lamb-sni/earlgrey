@@ -1,7 +1,7 @@
 import React from 'react';
 import { RecoilRoot } from "recoil"
 import Page from "./page";
-import './App.css';
+import "./reset.css";
 
 function App() {
   return (
