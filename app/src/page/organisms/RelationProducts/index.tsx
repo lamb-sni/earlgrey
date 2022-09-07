@@ -34,7 +34,9 @@ const RelationProduct = () => {
   return (
     <div>
       <p className={style.heading}>あわせて生産ボーナスの対象となる島産品：</p>
-      <Tag data={tagData} onClick={() => {}} />
+      <Tag data={tagData} onClick={v => {
+        console.log(v);
+      }} />
     </div>
   );
 };

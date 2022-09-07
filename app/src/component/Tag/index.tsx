@@ -1,5 +1,4 @@
 import * as React from "react";
-import ClassNames  from "classnames";
 import style from "./style.module.scss";
 
 interface Props {
@@ -14,7 +13,17 @@ const Tag = (props: Props) => {
   return (
     <div className={style.wrapper}>
       {props.data.map(d => {
-        return <div className={style.item} key={d.value}>{d.label}</div>
+        return (
+          <div
+            className={style.item}
+            key={d.value}
+            onClick={() => {
+              props.onClick(d.value);
+            }}
+          >
+            {d.label}
+          </div>
+        );
       })}
     </div>
   );
