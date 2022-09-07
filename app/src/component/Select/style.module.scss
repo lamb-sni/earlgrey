@@ -3,11 +3,12 @@
 }
 
 .isDisabled {
+  background-color: #ccc;
   pointer-events: none;
   cursor: not-allowed;
 
   span {
-    color: #999
+    color: #666
   }
 }
 
