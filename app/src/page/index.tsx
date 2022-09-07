@@ -17,24 +17,22 @@ const Page = () => {
   });
 
   return (
-    <div>
-      <main>
-        <section className={style.section}>
-          <div className={style.select}>
-            <p>選択中のカテゴリ：</p>
-            <Select data={selectData} onClick={v => { setSelectedCategory(v as CategoriesKey); }} />
-          </div>
-        </section>
+    <main className={style.main}>
+      <section className={style.section}>
+        <div className={style.select}>
+          <p>選択中のカテゴリ：</p>
+          <Select data={selectData} onClick={v => { setSelectedCategory(v as CategoriesKey); }} />
+        </div>
+      </section>
 
-        <section className={style.section}>
-          <CategoryProducts />
-        </section>
+      <section className={style.section}>
+        <CategoryProducts />
+      </section>
 
-        <section className={style.section}>
-          <RelationProduct />
-        </section>
-      </main>
-    </div>
+      <section className={style.section}>
+        <RelationProduct />
+      </section>
+    </main>
   );
 };
 

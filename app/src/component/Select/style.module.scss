@@ -22,7 +22,7 @@
 
 .select {
   width: 320px;
-  height: 240px;
+  max-height: 240px;
   overflow: scroll;
   background-color: #fff;
   border-radius: 3px;

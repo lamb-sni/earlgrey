@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useRecoilValue } from "recoil"
 import { selectedProductDetailAtom } from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
+import Tag from '../../../component/Tag';
 
 const RelationProduct = () => {
   const detail = useRecoilValue(selectedProductDetailAtom);
@@ -19,19 +20,21 @@ const RelationProduct = () => {
         schedule: v.schedule
       };
     });
-  }).flatMap(v => v).filter(v => v.name !== detail.name);
+  })
+  .flatMap(v => v)
+  .filter(v => v.name !== detail.name);
+  const tagData = relationProductsArr.map(d => {
+    return {
+      value: d.name,
+      label: `${d.name}（${d.schedule.label}）`
+    };
+  });
 
   return (
-    <>
+    <div>
       <p>あわせて生産ボーナスの対象となる島産品：</p>
-      <ul>
-        {relationProductsArr.map(d => {
-          return (
-            <li key={d.name}>{d.name}（{d.schedule.label}）</li>
-          );
-        })}
-      </ul>
-    </>
+      <Tag data={tagData} onClick={() => {}} />
+    </div>
   );
 };
 

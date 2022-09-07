@@ -1,5 +1,13 @@
+.main {
+  padding: 16px;
+}
+
 .section {
   margin: 16px 0 0;
+
+  &:first-child {
+    margin: 0;
+  }
 }
 
 .select {
