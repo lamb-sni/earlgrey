@@ -5,6 +5,7 @@ import { categories, CategoriesKey } from '../data/categories';
 import CategoryProducts from "./organisms/CategoryProducts";
 import RelationProduct from './organisms/RelationProducts';
 import Select from "../component/Select";
+import style from "./style.module.scss";
 
 const Page = () => {
   const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
@@ -18,12 +19,18 @@ const Page = () => {
   return (
     <div>
       <main>
-        <section>
-          <Select data={selectData} onClick={v => { setSelectedCategory(v as CategoriesKey); }} />
+        <section className={style.section}>
+          <div className={style.select}>
+            <p>選択中のカテゴリ：</p>
+            <Select data={selectData} onClick={v => { setSelectedCategory(v as CategoriesKey); }} />
+          </div>
         </section>
 
-        <section>
+        <section className={style.section}>
           <CategoryProducts />
+        </section>
+
+        <section className={style.section}>
           <RelationProduct />
         </section>
       </main>

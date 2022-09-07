@@ -9,22 +9,26 @@ interface Props {
     label: string;
   }[];
   onClick: (v: string) => void;
+  isDisabled?: boolean;
+  disabledText?: string;
 }
 
 const Select = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedLabel, setSelectedLabel] = React.useState("選択してください");
+  const [selectedLabel, setSelectedLabel] = React.useState("未選択");
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => { setIsOpen(false); });
 
   return (
     <div className={style.wrapper} ref={ref}>
       <div
-        className={style.selected}
+        className={ClassNames(style.selected, {
+          [style.isDisabled]: props.isDisabled
+        })}
         onClick={() => { setIsOpen(!isOpen); }}
       >
         <span>
-          {selectedLabel}
+          {props.isDisabled ? props.disabledText : selectedLabel}
         </span>
       </div>
       <ul className={ClassNames(style.select, {

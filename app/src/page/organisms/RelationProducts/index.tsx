@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRecoilValue } from "recoil"
-import { selectedProductDetailAtom } from "../../state/atom";
-import { products, ProductsKey } from "../../data";
+import { selectedProductDetailAtom } from "../../../state/atom";
+import { products, ProductsKey } from "../../../data";
 
 const RelationProduct = () => {
   const detail = useRecoilValue(selectedProductDetailAtom);
@@ -23,7 +23,6 @@ const RelationProduct = () => {
 
   return (
     <>
-      <p>選択中の島産品：{detail.name}（{detail.schedule.label}）</p>
       <p>あわせて生産ボーナスの対象となる島産品：</p>
       <ul>
         {relationProductsArr.map(d => {
