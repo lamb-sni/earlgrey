@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+}
+
+.item {
+  margin: 0 0 0 8px;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #333;
+  border-radius: 20px;
+
+  &:first-child {
+    margin: 0;
+  }
+}
