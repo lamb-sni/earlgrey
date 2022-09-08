@@ -1,6 +1,10 @@
 import * as React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { selectedProductDetailAtom, selectedCategoryAtom } from "../../../state/atom";
+import {
+  selectedProductDetailAtom,
+  selectedCategoryAtom,
+  selectedProducts
+} from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
 import Tag from "../../../component/Tag";
@@ -8,6 +12,7 @@ import style from "./style.module.scss";
 
 const RelationProduct = () => {
   const [detail, setDetail] = useRecoilState(selectedProductDetailAtom);
+  const [addedProducts, setAddedProducts] = useRecoilState(selectedProducts);
   const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
   if (!detail.name) {
     return <p className={style.empty}>島産品を選択するとあわせて生産ボーナスの対象が表示されます</p>;;
@@ -52,7 +57,7 @@ const RelationProduct = () => {
           });
         }}
         onClickOption={v => {
-          console.log(v);
+          setAddedProducts(addedProducts.concat([v]));
         }}
         optionType="add"
       />

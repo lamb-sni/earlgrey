@@ -41,7 +41,6 @@
 
   &::after {
     font-family: "Material Icons";
-    content: "\e145";
     color: #fff;
     font-size: 18px;
     position: absolute;
@@ -51,5 +50,23 @@
 
   &:hover {
     background-color: #666;
+  }
+
+  &.add {
+    &::after {
+      content: "\e145";
+    }
+  }
+
+  &.remove {
+    &::after {
+      content: "\e15b";
+    }
+  }
+
+  &.menu {
+    &::after {
+      content: "\e5d2";
+    }
   }
 }

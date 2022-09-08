@@ -2,7 +2,7 @@ import * as React from "react";
 import ClassNames from "classnames";
 import style from "./style.module.scss";
 
-type OptionType = "add" | "option";
+type OptionType = "add" | "remove" | "menu";
 
 interface Props {
   data: {
@@ -28,7 +28,13 @@ const Tag = (props: Props) => {
             >
               <p className={style.label}>{d.label}</p>
             </div>
-            {(props.optionType && props.onClickOption) && <span onClick={() => { props.onClickOption && props.onClickOption(d.value); }} className={style.option} />}
+            {
+              (props.optionType === "add" && props.onClickOption) &&
+                <span
+                  onClick={() => { props.onClickOption && props.onClickOption(d.value); }}
+                  className={ClassNames(style.option, style.add)}
+                />
+            }
           </div>
         );
       })}
