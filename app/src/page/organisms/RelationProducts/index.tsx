@@ -1,12 +1,12 @@
 import * as React from "react";
-import { useRecoilValue } from "recoil"
+import { useRecoilState } from "recoil"
 import { selectedProductDetailAtom } from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
 import Tag from "../../../component/Tag";
 import style from "./style.module.scss";
 
 const RelationProduct = () => {
-  const detail = useRecoilValue(selectedProductDetailAtom);
+  const [detail, setDetail] = useRecoilState(selectedProductDetailAtom);
   if (!detail.name) {
     return <p className={style.empty}>島産品を選択するとあわせて生産ボーナスの対象が表示されます</p>;;
   }
@@ -35,7 +35,15 @@ const RelationProduct = () => {
     <div>
       <p className={style.heading}>あわせて生産ボーナスの対象となる島産品：</p>
       <Tag data={tagData} onClick={v => {
-        console.log(v);
+        relationProducts.map(o => {
+          Object.values(o).map(d => {
+            if (d.name === v) {
+              setDetail(d);
+            }
+            return null;
+          });
+          return null;
+        });
       }} />
     </div>
   );

@@ -21,7 +21,7 @@ export const marine = {
     categories: [categories.marine.key, categories.accessory.key],
   },
   3: {
-    name: "アイルソルコット",
+    name: "アイルソルトコッド",
     schedule: schedule.six,
     amount: 64,
     categories: [categories.marine.key, categories.food.key],

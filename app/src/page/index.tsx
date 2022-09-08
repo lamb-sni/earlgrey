@@ -4,6 +4,7 @@ import { selectedCategoryAtom } from "../state/atom";
 import { categories, CategoriesKey } from '../data/categories';
 import CategoryProducts from "./organisms/CategoryProducts";
 import RelationProduct from './organisms/RelationProducts';
+import ProductSearch from "./organisms/ProductSearch";
 import Select from "../component/Select";
 import style from "./style.module.scss";
 
@@ -18,6 +19,10 @@ const Page = () => {
 
   return (
     <main className={style.main}>
+      <section>
+        <ProductSearch />
+      </section>
+
       <section className={style.section}>
         <div className={style.select}>
           <p>選択中のカテゴリ：</p>

@@ -15,13 +15,13 @@ export const food = {
     categories: [categories.food.key],
   },
   2: {
-    name: "アイルソルコット",
+    name: "アイルソルトコッド",
     schedule: schedule.six,
     amount: 64,
     categories: [categories.food.key, categories.marine.key],
   },
   3: {
-    name: "開拓工房のラディッシュピクルス	",
+    name: "開拓工房のラディッシュピクルス",
     schedule: schedule.eight,
     amount: 124,
     categories: [categories.food.key],
