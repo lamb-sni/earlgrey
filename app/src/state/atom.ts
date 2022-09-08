@@ -16,3 +16,8 @@ export const selectedProductDetailAtom = atom({
     categories: [""],
   }
 });
+
+export const selectedProducts = atom({
+  key: "selectedProductsAtom",
+  default: [] as string[]
+});

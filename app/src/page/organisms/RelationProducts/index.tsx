@@ -37,18 +37,25 @@ const RelationProduct = () => {
   return (
     <div>
       <p className={style.heading}>あわせて生産ボーナスの対象となる島産品：</p>
-      <Tag data={tagData} onClick={v => {
-        relationProducts.map(o => {
-          Object.values(o).map(d => {
-            if (d.name === v) {
-              setDetail(d);
-              setSelectedCategory(d.category as CategoriesKey);
-            }
+      <Tag
+        data={tagData}
+        onClick={v => {
+          relationProducts.map(o => {
+            Object.values(o).map(d => {
+              if (d.name === v) {
+                setDetail(d);
+                setSelectedCategory(d.category as CategoriesKey);
+              }
+              return null;
+            });
             return null;
           });
-          return null;
-        });
-      }} />
+        }}
+        onClickOption={v => {
+          console.log(v);
+        }}
+        optionType="add"
+      />
     </div>
   );
 };
