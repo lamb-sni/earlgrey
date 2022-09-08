@@ -11,6 +11,7 @@ interface Props {
   onClick: (v: string) => void;
   isDisabled?: boolean;
   disabledText?: string;
+  selectedValue?: string;
 }
 
 const Select = (props: Props) => {
@@ -18,6 +19,18 @@ const Select = (props: Props) => {
   const [selectedLabel, setSelectedLabel] = React.useState("未選択");
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => { setIsOpen(false); });
+
+  React.useEffect(() => {
+    if (!props.selectedValue) {
+      return;
+    }
+    props.data.map(d => {
+      if (d.value === props.selectedValue) {
+        setSelectedLabel(d.label);
+      }
+      return null;
+    });
+  }, [props.selectedValue, props.data]);
 
   return (
     <div className={style.wrapper} ref={ref}>

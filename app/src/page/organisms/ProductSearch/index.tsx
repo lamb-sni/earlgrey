@@ -1,14 +1,19 @@
 import * as React from "react";
 import ClassNames  from "classnames";
-import { useRecoilState } from "recoil"
-import { selectedProductDetailAtom } from "../../../state/atom";
-import { products, ProductsKey } from "../../../data";
+import { useSetRecoilState } from "recoil"
+import { selectedProductDetailAtom, selectedCategoryAtom } from "../../../state/atom";
+import { CategoriesKey } from "../../../data/categories";
+import { products } from "../../../data";
 import Tag from "../../../component/Tag";
 import style from "./style.module.scss";
 
 const ProductSearch = () => {
+  const setSelectedProductDetail = useSetRecoilState(selectedProductDetailAtom);
+  const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
   const [word, setWord] = React.useState("");
+  const [isOpen, setIsOpen] = React.useState(false);
   const [targetProductNameArr, setTargetProductNameArr] = React.useState([] as string[]);
+  const [selectedProductName, setSelectedProductName] = React.useState("");
 
   React.useEffect(() => {
     if (!word) {
@@ -28,6 +33,22 @@ const ProductSearch = () => {
     setTargetProductNameArr(result);
   }, [word]);
 
+  React.useEffect(() => {
+    if (!selectedProductName) {
+      return;
+    }
+    Object.values(products).map(o => {
+      Object.values(o).map(d => {
+        if (d.name === selectedProductName) {
+          setSelectedCategory(d.category as CategoriesKey);
+          setSelectedProductDetail(d);
+        }
+        return null;
+      });
+      return null;
+    });
+  }, [selectedProductName, setSelectedProductDetail, setSelectedCategory]);
+
   const tagData = targetProductNameArr.map(v => {
     return {
       value: v,
@@ -43,12 +64,14 @@ const ProductSearch = () => {
           className={style.input}
           type="text"
           onChange={e => { setWord(e.target.value); }}
+          onFocus={() => { setIsOpen(true); }}
+          onBlur={() => { setIsOpen(false); }}
         />
       </div>
-      <div className={ClassNames(style.result, { [style.isHide]: !word })}>
+      <div className={ClassNames(style.result, { [style.isHide]: !isOpen })}>
         {
           targetProductNameArr.length
-          ? <Tag data={tagData} onClick={v => {}} />
+          ? <Tag data={tagData} onClick={v => { setSelectedProductName(v); }} />
           : <p>対象となる島産品がありません</p>
         }
       </div>

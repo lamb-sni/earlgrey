@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
 import { selectedCategoryAtom } from "../state/atom";
 import { categories, CategoriesKey } from '../data/categories';
 import CategoryProducts from "./organisms/CategoryProducts";
@@ -9,7 +9,7 @@ import Select from "../component/Select";
 import style from "./style.module.scss";
 
 const Page = () => {
-  const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
+  const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryAtom);
   const selectData = Object.values(categories).map(d => {
     return {
       value: d.key,
@@ -26,7 +26,11 @@ const Page = () => {
       <section className={style.section}>
         <div className={style.select}>
           <p>選択中のカテゴリ：</p>
-          <Select data={selectData} onClick={v => { setSelectedCategory(v as CategoriesKey); }} />
+          <Select
+            data={selectData}
+            onClick={v => { setSelectedCategory(v as CategoriesKey); }}
+            selectedValue={selectedCategory}
+          />
         </div>
       </section>
 

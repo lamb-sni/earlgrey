@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSetRecoilState, useRecoilValue } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 import { selectedCategoryAtom, selectedProductDetailAtom } from "../../../state/atom";
 import { products } from "../../../data";
 import Select from "../../../component/Select";
@@ -7,7 +7,7 @@ import style from "./style.module.scss";
 
 const CategoryProducts = () => {
   const selectedCategory = useRecoilValue(selectedCategoryAtom);
-  const setSelectedProductDetail = useSetRecoilState(selectedProductDetailAtom);
+  const [selectedProductDetail, setSelectedProductDetail] = useRecoilState(selectedProductDetailAtom);
   const product = selectedCategory ? products[selectedCategory] : null;
   const selectData = product
     ? Object.values(product).map(d => {
@@ -37,6 +37,7 @@ const CategoryProducts = () => {
           }}
           isDisabled={!selectedCategory}
           disabledText="カテゴリを選択してください"
+          selectedValue={selectedProductDetail.name}
         />
       </ul>
     </div>
