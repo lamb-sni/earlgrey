@@ -5,7 +5,7 @@ export const schedule = {
   },
   six: {
     value: 6,
-    label: "4時間"
+    label: "6時間"
   },
   eight: {
     value: 8,
