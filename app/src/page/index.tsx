@@ -5,6 +5,7 @@ import { categories, CategoriesKey } from '../data/categories';
 import CategoryProducts from "./organisms/CategoryProducts";
 import RelationProduct from './organisms/RelationProducts';
 import ProductSearch from "./organisms/ProductSearch";
+import Schedule from "./organisms/Schedule";
 import Select from "../component/Select";
 import style from "./style.module.scss";
 
@@ -40,6 +41,10 @@ const Page = () => {
 
       <section className={style.section}>
         <RelationProduct />
+      </section>
+
+      <section className={style.section}>
+        <Schedule />
       </section>
     </main>
   );

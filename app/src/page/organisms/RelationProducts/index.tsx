@@ -3,7 +3,7 @@ import { useRecoilState, useSetRecoilState } from "recoil"
 import {
   selectedProductDetailAtom,
   selectedCategoryAtom,
-  selectedProducts
+  selectedProductsAtom
 } from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
@@ -12,10 +12,10 @@ import style from "./style.module.scss";
 
 const RelationProduct = () => {
   const [detail, setDetail] = useRecoilState(selectedProductDetailAtom);
-  const [addedProducts, setAddedProducts] = useRecoilState(selectedProducts);
+  const [addedProducts, setAddedProducts] = useRecoilState(selectedProductsAtom);
   const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
   if (!detail.name) {
-    return <p className={style.empty}>島産品を選択するとあわせて生産ボーナスの対象が表示されます</p>;;
+    return <p className={style.empty}>島産品を選択するとあわせて生産ボーナスの対象が表示されます</p>;
   }
 
   const relationCategories = detail.categories;

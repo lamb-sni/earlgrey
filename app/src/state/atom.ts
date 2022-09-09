@@ -17,7 +17,7 @@ export const selectedProductDetailAtom = atom({
   }
 });
 
-export const selectedProducts = atom({
+export const selectedProductsAtom = atom({
   key: "selectedProductsAtom",
   default: [] as string[]
 });
