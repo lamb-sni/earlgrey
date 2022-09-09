@@ -35,3 +35,21 @@ export const products = {
 };
 
 export type ProductsKey = keyof typeof products;
+
+export const getProductForScheduleByName = (name: string) => {
+  return Object.values(products).map(o => {
+    return Object.values(o).map(d => {
+      if (d.name === name) {
+        return {
+          name: d.name,
+          amount: d.amount,
+          schedule: d.schedule,
+          categories: d.categories
+        };
+      }
+      return null;
+    });
+  })
+  .flatMap(v => v)
+  .filter(v => v)[0];
+};

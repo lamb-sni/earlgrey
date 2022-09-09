@@ -19,5 +19,10 @@ export const selectedProductDetailAtom = atom({
 
 export const selectedProductsAtom = atom({
   key: "selectedProductsAtom",
-  default: [] as string[]
+  default: [{
+    name: "",
+    schedule: schedule.four,
+    amount: 0,
+    categories: [""],
+  }]
 });

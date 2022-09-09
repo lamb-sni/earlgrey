@@ -1,0 +1,66 @@
+.icon {
+  display: block;
+  width: 30px;
+  border-left: 1px solid #ccc;
+  background-color: #333;
+  height: 40px;
+  position: absolute;
+  border-radius: 0 20px 20px 0px;
+  right: 0;
+  top: 0px;
+  cursor: pointer;
+  transition: .3s;
+
+  &::after {
+    font-family: "Material Icons";
+    content: "\e5d2";
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    right: 8px;
+    top: 12px;
+  }
+
+  &:hover {
+    background-color: #666;
+  }
+}
+
+.popover {
+  width: 120px;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  position: absolute;
+  top: 42px;
+  right: -24px;
+  z-index: 1;
+  transition: .3s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.isHide {
+  top: 38px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.item {
+  position: relative;
+  border-bottom: 1px solid #999;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.itemInner {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    color: #666;
+  }
+}

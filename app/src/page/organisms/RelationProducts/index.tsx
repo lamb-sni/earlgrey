@@ -5,7 +5,7 @@ import {
   selectedCategoryAtom,
   selectedProductsAtom
 } from "../../../state/atom";
-import { products, ProductsKey } from "../../../data";
+import { products, ProductsKey, getProductForScheduleByName } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
 import Tag from "../../../component/Tag";
 import style from "./style.module.scss";
@@ -57,7 +57,11 @@ const RelationProduct = () => {
           });
         }}
         onClickOption={v => {
-          setAddedProducts(addedProducts.concat([v]));
+          const obj = getProductForScheduleByName(v);
+          if (!obj) {
+            return;
+          }
+          setAddedProducts(addedProducts.concat([obj]));
         }}
         optionType="add"
       />
