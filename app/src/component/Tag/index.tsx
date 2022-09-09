@@ -13,11 +13,12 @@ interface Props {
   onClick: (v: string) => void;
   onClickOption?: (v: string) => void;
   optionType?: OptionType;
+  noFlex?: boolean;
 }
 
 const Tag = (props: Props) => {
   return (
-    <div className={style.wrapper}>
+    <div className={ClassNames(style.wrapper, { [style.noFlex]: props.noFlex })}>
       {props.data.map((d, idx) => {
         return (
           <div className={style.item} key={d.value + idx.toString()}>

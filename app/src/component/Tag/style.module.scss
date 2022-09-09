@@ -4,6 +4,15 @@
   flex-wrap: wrap;
 }
 
+.noFlex {
+  margin: 0;
+  display: block;
+
+  > .item {
+    margin: 0 0 8px;
+  }
+}
+
 .item {
   margin: 8px 0 0 8px;
   position: relative;
