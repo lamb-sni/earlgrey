@@ -24,3 +24,5 @@ export const demand = {
 export type DemandKey = keyof typeof demand;
 
 export const convertDemandLabel = (key: DemandKey) => demand[key].label;
+
+export const getDemandRate = (key: DemandKey) => demand[key].rate;

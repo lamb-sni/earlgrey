@@ -66,7 +66,8 @@ const RelationProduct = () => {
           setAddedProducts(addedProducts.concat([{
             ...obj,
             popularity: "usually" as PopularityKey,
-            demand: "usually" as DemandKey
+            demand: "usually" as DemandKey,
+            isBonus: false
           }]));
         }}
         optionType="add"

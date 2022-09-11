@@ -3,14 +3,39 @@
 }
 
 .itemWrapper {
-  margin: 8px 0 0;
+  margin: 24px 0 0;
   width: 100%;
   display: flex;
+  position: relative;
+
+  &::after {
+    font-family: "Material Icons";
+    content: "\e5db";
+    color: #333;
+    font-size: 22px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 22px);
+  }
+
+  &:first-child {
+    margin: 0;
+  }
+
+  &:last-child {
+    &::after {
+      content: none;
+    }
+  }
 }
 
 .item {
-  padding: 16px;
+  padding: 8px;
   width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: #fff;
   background-color: #333;
   border-radius: 3px;
@@ -35,5 +60,14 @@
   > p {
     padding: 8px;
     color: #fff;
+  }
+
+  &.remove {
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+      background-color: #666;
+    }
   }
 }

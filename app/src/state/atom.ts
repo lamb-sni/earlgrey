@@ -3,6 +3,7 @@ import { CategoriesKey } from "../data/categories";
 import { PopularityKey } from "../data/popularity";
 import { DemandKey } from "../data/demand";
 import { schedule } from "../data/schedule";
+import { SelectedProduct } from "../data";
 
 export const selectedCategoryAtom = atom({
   key: "selectedCategoryAtom",
@@ -19,7 +20,7 @@ export const selectedProductDetailAtom = atom({
   }
 });
 
-export const selectedProductsAtom = atom({
+export const selectedProductsAtom = atom<SelectedProduct[]>({
   key: "selectedProductsAtom",
   default: [{
     name: "",
@@ -27,6 +28,20 @@ export const selectedProductsAtom = atom({
     amount: 0,
     categories: [""],
     popularity: "usually" as PopularityKey,
-    demand: "usually" as DemandKey
+    demand: "usually" as DemandKey,
+    isBonus: false
+  }]
+});
+
+export const selectedProductsIncludedBonusAtom = atom<SelectedProduct[]>({
+  key: "selectedProductsIncludedBonusAtom",
+  default: [{
+    name: "",
+    schedule: schedule.four,
+    amount: 0,
+    categories: [""],
+    popularity: "usually" as PopularityKey,
+    demand: "usually" as DemandKey,
+    isBonus: false
   }]
 });

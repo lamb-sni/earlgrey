@@ -20,3 +20,5 @@ export const popularity = {
 export type PopularityKey = keyof typeof popularity;
 
 export const convertPopularityLabel = (key: PopularityKey) => popularity[key].label;
+
+export const getPopularityRate = (key: PopularityKey) => popularity[key].rate;

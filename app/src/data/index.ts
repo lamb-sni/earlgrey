@@ -14,6 +14,9 @@ import { snack } from "./products/snack";
 import { spice } from "./products/spice";
 import { weapon } from "./products/weapon";
 import { wood } from "./products/wood";
+import { PopularityKey } from "./popularity";
+import { DemandKey } from "./demand";
+import { Schedule } from "./schedule";
 
 export const products = {
   accessory,
@@ -35,6 +38,16 @@ export const products = {
 };
 
 export type ProductsKey = keyof typeof products;
+
+export interface SelectedProduct {
+  name: string;
+  schedule: Schedule;
+  amount: number;
+  categories: string[];
+  popularity: PopularityKey;
+  demand: DemandKey;
+  isBonus: boolean;
+};
 
 export const getProductForScheduleByName = (name: string) => {
   return Object.values(products).map(o => {

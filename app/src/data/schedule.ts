@@ -40,3 +40,8 @@ export const schedulePattern = {
 export const totalTime = 24;
 
 export type ScheduleObj = keyof typeof schedule;
+
+export interface Schedule {
+  value: number;
+  label: string;
+};

@@ -1,27 +1,30 @@
 import * as React from "react";
-import { useRecoilState } from "recoil"
+import { useRecoilValue } from "recoil"
 import ClassNames from "classnames";
-import { selectedProductsAtom } from "../../../state/atom";
-import { products, ProductsKey } from "../../../data";
-import { CategoriesKey } from "../../../data/categories";
+import { selectedProductsAtom, selectedProductsIncludedBonusAtom } from "../../../state/atom";
 import { totalTime } from "../../../data/schedule";
+import { getPopularityRate } from "../../../data/popularity";
+import { getDemandRate } from "../../../data/demand";
 import ScheduleItem from "../ScheduleItem";
 import style from "./style.module.scss";
 
 const Schedule = () => {
-  const [selectedProducts, setSelectedProducts] = useRecoilState(selectedProductsAtom);
+  const selectedProducts = useRecoilValue(selectedProductsAtom);
+  const selectedProductsIncludedBonus = useRecoilValue(selectedProductsIncludedBonusAtom);
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const tagData = selectedProducts.map(d => {
-    return {
-      value: d.name,
-      label: `${d.name}（${d.schedule.label}）`
-    };
-  }).filter(v => v.value);
 
   const sumTime = selectedProducts
     .map(d => d.name ? d.schedule.value : 0)
     .reduce((acc, crr) => acc + crr, 0);
+
+  const sumAmount = selectedProductsIncludedBonus.map(d => {
+    const amount = d.amount;
+    const popluarityRate = getPopularityRate(d.popularity);
+    const demandRate = getDemandRate(d.demand);
+    const bonusRate = d.isBonus ? 2.0 : 1.0;
+    const result = Math.floor(amount * popluarityRate * demandRate * bonusRate);
+    return result;
+  }).reduce((acc, crr) => acc + crr, 0);
 
   return (
     <>
@@ -35,6 +38,11 @@ const Schedule = () => {
               <p className={style.totalTime}>
                 <span className={ClassNames({[style.over]: sumTime > totalTime})}>{sumTime}時間</span> / {totalTime}時間
               </p>
+            </div>
+            <div className={style.time}>
+              <div className={style.totalTime}>
+                <p>予想収入：<span>{sumAmount}</span></p>
+              </div>
             </div>
           </div>
         </div>

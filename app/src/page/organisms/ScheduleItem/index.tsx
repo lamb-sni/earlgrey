@@ -1,18 +1,40 @@
 import * as React from "react";
-import { useRecoilState } from "recoil"
+import { useRecoilState, useSetRecoilState } from "recoil"
 import ClassNames from "classnames";
-import { selectedProductsAtom } from "../../../state/atom";
-import { products, ProductsKey } from "../../../data";
-import { CategoriesKey } from "../../../data/categories";
-import { totalTime } from "../../../data/schedule";
+import { selectedProductsAtom, selectedProductsIncludedBonusAtom } from "../../../state/atom";
 import * as popularity from "../../../data/popularity";
 import * as demand from "../../../data/demand";
-import Tag from "../../../component/Tag";
 import PopoverMenu from "../../../component/PopoverMenu";
 import style from "./style.module.scss";
 
 const ScheduleItem = () => {
+  const setSelectedProductsIncludedBonus = useSetRecoilState(selectedProductsIncludedBonusAtom);
   const [selectedProducts, setSelectedProducts] = useRecoilState(selectedProductsAtom);
+  const [isBonusArr, setIsBonusArr] = React.useState([] as boolean[]);
+
+  React.useEffect(() => {
+    const result = selectedProducts.map((d, idx) => {
+      if (!idx) {
+        return false;
+      }
+      const beforeItem = selectedProducts[idx - 1];
+      const isBonus = beforeItem.categories.map(o => {
+        return d.categories.includes(o);
+      }).includes(true);
+      return isBonus;
+    });
+    setIsBonusArr(result);
+  }, [selectedProducts]);
+
+  React.useEffect(() => {
+    const result = selectedProducts.map((d, idx) => {
+      return {
+        ...d,
+        isBonus: isBonusArr[idx]
+      };
+    });
+    setSelectedProductsIncludedBonus(result);
+  }, [isBonusArr]);
 
   return (
     <div className={ClassNames(style.wrapper)}>
@@ -27,6 +49,7 @@ const ScheduleItem = () => {
                 <p>{d.name}</p>
                 <p>作業時間：{d.schedule.label}</p>
                 <p>単価：{d.amount}</p>
+                <p>{isBonusArr[idx] ? "あわせて生産ボーナス発動！" : null}</p>
               </div>
               <div className={style.settings}>
                 <ul>
@@ -76,8 +99,19 @@ const ScheduleItem = () => {
                       }}
                     />
                   </li>
-                  <li className={style.setting}>
-                    <p className={style.remove}>削除</p>
+                  <li className={ClassNames(style.setting, style.remove)}>
+                    <p
+                      onClick={() => {
+                        const result = selectedProducts.map((o, i) => {
+                          if (i === idx) {
+                            return null;
+                          }
+                          return o;
+                        }).filter((o): o is NonNullable<typeof o> => o != null);;
+                        setSelectedProducts(result);
+                        setSelectedProductsIncludedBonus(result);
+                      }}
+                    >削除</p>
                   </li>
                 </ul>
               </div>
