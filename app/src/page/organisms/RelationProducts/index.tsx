@@ -7,6 +7,8 @@ import {
 } from "../../../state/atom";
 import { products, ProductsKey, getProductForScheduleByName } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
+import { PopularityKey } from "../../../data/popularity";
+import { DemandKey } from "../../../data/demand";
 import Tag from "../../../component/Tag";
 import style from "./style.module.scss";
 
@@ -61,7 +63,11 @@ const RelationProduct = () => {
           if (!obj) {
             return;
           }
-          setAddedProducts(addedProducts.concat([obj]));
+          setAddedProducts(addedProducts.concat([{
+            ...obj,
+            popularity: "usually" as PopularityKey,
+            demand: "usually" as DemandKey
+          }]));
         }}
         optionType="add"
       />

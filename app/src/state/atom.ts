@@ -1,5 +1,7 @@
 import { atom } from "recoil"
 import { CategoriesKey } from "../data/categories";
+import { PopularityKey } from "../data/popularity";
+import { DemandKey } from "../data/demand";
 import { schedule } from "../data/schedule";
 
 export const selectedCategoryAtom = atom({
@@ -24,5 +26,7 @@ export const selectedProductsAtom = atom({
     schedule: schedule.four,
     amount: 0,
     categories: [""],
+    popularity: "usually" as PopularityKey,
+    demand: "usually" as DemandKey
   }]
 });

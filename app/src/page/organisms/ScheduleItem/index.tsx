@@ -5,6 +5,8 @@ import { selectedProductsAtom } from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
 import { totalTime } from "../../../data/schedule";
+import * as popularity from "../../../data/popularity";
+import * as demand from "../../../data/demand";
 import Tag from "../../../component/Tag";
 import PopoverMenu from "../../../component/PopoverMenu";
 import style from "./style.module.scss";
@@ -29,55 +31,49 @@ const ScheduleItem = () => {
               <div className={style.settings}>
                 <ul>
                   <li className={style.setting}>
-                    <p>人気：大人気</p>
+                    <p>人気：{popularity.convertPopularityLabel(d.popularity)}</p>
                     <PopoverMenu
-                      data={[
-                        {
-                          value: "veryPopular",
-                          label: "大人気"
-                        },
-                        {
-                          value: "popular",
-                          label: "人気"
-                        },
-                        {
-                          value: "usually",
-                          label: "普通"
-                        },
-                        {
-                          value: "unpopular",
-                          label: "不人気"
-                        }
-                      ]}
-                      onClick={v => { console.log(v); }}
+                      data={Object.entries(popularity.popularity).map(d => {
+                        return {
+                          value: d[0],
+                          label: d[1].label
+                        };
+                      })}
+                      onClick={v => {
+                        const result = selectedProducts.map((o, i) => {
+                          if (i === idx) {
+                            return {
+                              ...o,
+                              popularity: v as popularity.PopularityKey
+                            };
+                          }
+                          return o;
+                        });
+                        setSelectedProducts(result);
+                      }}
                     />
                   </li>
                   <li className={style.setting}>
-                    <p>需要：超供給不足</p>
+                    <p>需要：{demand.convertDemandLabel(d.demand)}</p>
                     <PopoverMenu
-                      data={[
-                        {
-                          value: "superShortSupply",
-                          label: "超供給不足"
-                        },
-                        {
-                          value: "shortSupply",
-                          label: "供給不足"
-                        },
-                        {
-                          value: "usually",
-                          label: "普通"
-                        },
-                        {
-                          value: "overSupply",
-                          label: "供給過多"
-                        },
-                        {
-                          value: "superOverSuppley",
-                          label: "超供給過多"
-                        }
-                      ]}
-                      onClick={v => { console.log(v); }}
+                      data={Object.entries(demand.demand).map(d => {
+                        return {
+                          value: d[0],
+                          label: d[1].label
+                        };
+                      })}
+                      onClick={v => {
+                        const result = selectedProducts.map((o, i) => {
+                          if (i === idx) {
+                            return {
+                              ...o,
+                              demand: v as demand.DemandKey
+                            };
+                          }
+                          return o;
+                        });
+                        setSelectedProducts(result);
+                      }}
                     />
                   </li>
                   <li className={style.setting}>

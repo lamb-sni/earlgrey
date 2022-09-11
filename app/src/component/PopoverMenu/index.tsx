@@ -28,7 +28,10 @@ const PopoverMenu = (props: Props) => {
             <div className={style.item} key={d.value + idx.toString()}>
               <div
                 className={style.itemInner}
-                onClick={() => { props.onClick(d.value); }}
+                onClick={() => {
+                  props.onClick(d.value);
+                  setIsOpen(false);
+                }}
               >
                 <p className={style.label}>{d.label}</p>
               </div>
