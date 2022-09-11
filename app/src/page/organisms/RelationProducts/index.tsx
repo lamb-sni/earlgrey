@@ -1,9 +1,11 @@
 import * as React from "react";
-import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil"
+import ClassNames from "classnames";
 import {
   selectedProductDetailAtom,
   selectedCategoryAtom,
-  selectedProductsAtom
+  selectedProductsAtom,
+  isOpenDrawerAtom
 } from "../../../state/atom";
 import { products, ProductsKey, getProductForScheduleByName } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
@@ -16,6 +18,7 @@ const RelationProduct = () => {
   const [detail, setDetail] = useRecoilState(selectedProductDetailAtom);
   const [addedProducts, setAddedProducts] = useRecoilState(selectedProductsAtom);
   const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
+  const isOpenDrawer = useRecoilValue(isOpenDrawerAtom);
   if (!detail.name) {
     return <p className={style.empty}>島産品を選択するとあわせて生産ボーナスの対象が表示されます</p>;
   }
@@ -42,7 +45,7 @@ const RelationProduct = () => {
   });
 
   return (
-    <div>
+    <div className={ClassNames(style.wrapper, { [style.isOpenDrawer]: isOpenDrawer })}>
       <p className={style.heading}>あわせて生産ボーナスの対象となる島産品：</p>
       <Tag
         data={tagData}

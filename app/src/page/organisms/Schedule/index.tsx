@@ -1,7 +1,7 @@
 import * as React from "react";
-import { useRecoilValue } from "recoil"
+import { useRecoilValue, useRecoilState } from "recoil"
 import ClassNames from "classnames";
-import { selectedProductsAtom, selectedProductsIncludedBonusAtom } from "../../../state/atom";
+import { selectedProductsAtom, selectedProductsIncludedBonusAtom, isOpenDrawerAtom } from "../../../state/atom";
 import { totalTime } from "../../../data/schedule";
 import { getPopularityRate } from "../../../data/popularity";
 import { getDemandRate } from "../../../data/demand";
@@ -11,9 +11,14 @@ import style from "./style.module.scss";
 const Schedule = () => {
   const selectedProducts = useRecoilValue(selectedProductsAtom);
   const selectedProductsIncludedBonus = useRecoilValue(selectedProductsIncludedBonusAtom);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpenDrawer, setIsOpenDrawer] = useRecoilState(isOpenDrawerAtom);
+  const [isOpen, setIsOpen] = React.useState(isOpenDrawer);
   const [motivation, setMotivation] = React.useState(0);
   const maxMotivation = 35;
+
+  React.useEffect(() => {
+    setIsOpenDrawer(isOpen);
+  }, [isOpen]);
 
   const sumTime = selectedProducts
     .map(d => d.name ? d.schedule.value : 0)
