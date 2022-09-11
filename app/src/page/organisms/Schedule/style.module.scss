@@ -84,3 +84,55 @@
 .over {
   color: red;
 }
+
+.motivationWrap {
+  display: flex;
+  align-items: normal;
+}
+
+.motivation {
+  margin: 0 4px;
+}
+
+.motivationButton {
+  &::after {
+    font-family: "Material Icons";
+    padding: 2px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #333;
+    border-radius: 50px;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  &:hover {
+    &::after {
+      background-color: #666;
+    }
+  }
+
+  &.minus {
+    &::after {
+      content: "\e15b";
+    }
+  }
+
+  &.plus {
+    &::after {
+      content: "\e145";
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    &::after {
+      background-color: #999;
+    }
+  }
+}
+
+
