@@ -11,6 +11,7 @@ const ScheduleItem = () => {
   const setSelectedProductsIncludedBonus = useSetRecoilState(selectedProductsIncludedBonusAtom);
   const [selectedProducts, setSelectedProducts] = useRecoilState(selectedProductsAtom);
   const [isBonusArr, setIsBonusArr] = React.useState([] as boolean[]);
+  const isEmpty = selectedProducts.length === 1;
 
   React.useEffect(() => {
     const result = selectedProducts.map((d, idx) => {
@@ -35,6 +36,14 @@ const ScheduleItem = () => {
     });
     setSelectedProductsIncludedBonus(result);
   }, [isBonusArr]);
+
+  if (isEmpty) {
+    return (
+      <div className={ClassNames(style.wrapper)}>
+        <div>島産品が選択されていません</div>
+      </div>
+    )
+  }
 
   return (
     <div className={ClassNames(style.wrapper)}>
