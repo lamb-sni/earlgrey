@@ -92,6 +92,7 @@ const ProductSearch = () => {
                   demand: "usually" as DemandKey,
                   isBonus: false
                 }]));
+                setSelectedProductName(v);
               }}
               optionType="add"
             />

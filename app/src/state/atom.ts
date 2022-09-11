@@ -48,5 +48,5 @@ export const selectedProductsIncludedBonusAtom = atom<SelectedProduct[]>({
 
 export const isOpenDrawerAtom = atom<boolean>({
   key: "isOpenDrawerAtom",
-  default: false
+  default: true
 });
