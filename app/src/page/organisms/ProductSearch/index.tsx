@@ -1,15 +1,22 @@
 import * as React from "react";
 import ClassNames  from "classnames";
-import { useSetRecoilState } from "recoil"
-import { selectedProductDetailAtom, selectedCategoryAtom } from "../../../state/atom";
+import { useRecoilState, useSetRecoilState } from "recoil"
+import {
+  selectedProductDetailAtom,
+  selectedCategoryAtom,
+  selectedProductsAtom
+} from "../../../state/atom";
 import { CategoriesKey } from "../../../data/categories";
-import { products } from "../../../data";
+import { products, getProductForScheduleByName } from "../../../data";
+import { PopularityKey } from "../../../data/popularity";
+import { DemandKey } from "../../../data/demand";
 import Tag from "../../../component/Tag";
 import style from "./style.module.scss";
 
 const ProductSearch = () => {
   const setSelectedProductDetail = useSetRecoilState(selectedProductDetailAtom);
   const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
+  const [addedProducts, setAddedProducts] = useRecoilState(selectedProductsAtom);
   const [word, setWord] = React.useState("");
   const [isOpen, setIsOpen] = React.useState(false);
   const [targetProductNameArr, setTargetProductNameArr] = React.useState([] as string[]);
@@ -71,7 +78,23 @@ const ProductSearch = () => {
       <div className={ClassNames(style.result, { [style.isHide]: !isOpen })}>
         {
           targetProductNameArr.length
-          ? <Tag data={tagData} onClick={v => { setSelectedProductName(v); }} />
+          ? <Tag
+              data={tagData}
+              onClick={v => { setSelectedProductName(v); }}
+              onClickOption={v => {
+                const obj = getProductForScheduleByName(v);
+                if (!obj) {
+                  return;
+                }
+                setAddedProducts(addedProducts.concat([{
+                  ...obj,
+                  popularity: "usually" as PopularityKey,
+                  demand: "usually" as DemandKey,
+                  isBonus: false
+                }]));
+              }}
+              optionType="add"
+            />
           : <p>対象となる島産品がありません</p>
         }
       </div>

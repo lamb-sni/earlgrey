@@ -48,7 +48,7 @@ const ScheduleItem = () => {
               <div className={style.item} >
                 <p>{d.name}</p>
                 <p>作業時間：{d.schedule.label}</p>
-                <p>単価：{d.amount}</p>
+                <p>基本取引額 ：{d.amount}</p>
                 <p>{isBonusArr[idx] ? "あわせて生産ボーナス発動！" : null}</p>
               </div>
               <div className={style.settings}>
