@@ -8,7 +8,6 @@ interface Props {
     value: string;
     label: string;
   }[];
-  isOpen: boolean;
   onClick: (v: string) => void;
 }
 

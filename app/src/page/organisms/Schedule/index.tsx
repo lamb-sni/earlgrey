@@ -5,7 +5,7 @@ import { selectedProductsAtom } from "../../../state/atom";
 import { products, ProductsKey } from "../../../data";
 import { CategoriesKey } from "../../../data/categories";
 import { totalTime } from "../../../data/schedule";
-import Tag from "../../../component/Tag";
+import ScheduleItem from "../ScheduleItem";
 import style from "./style.module.scss";
 
 const Schedule = () => {
@@ -27,18 +27,8 @@ const Schedule = () => {
     <>
       <div className={ClassNames(style.wrapper, { [style.isHide]: !isOpen })}>
         <div className={style.inner}>
-          <div className={style.tags}>
-            <Tag
-              data={tagData}
-              onClick={v => {
-                console.log(v);
-              }}
-              onClickOption={v => {
-                console.log(v);
-              }}
-              optionType="menu"
-              noFlex
-            />
+          <div className={style.items}>
+            <ScheduleItem />
           </div>
           <div className={style.status}>
             <div className={style.time}>

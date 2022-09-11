@@ -1,0 +1,38 @@
+.wrapper {
+  width: 100%;
+}
+
+.itemWrapper {
+  margin: 8px 0 0;
+  width: 100%;
+  display: flex;
+}
+
+.item {
+  padding: 16px;
+  width: 60%;
+  color: #fff;
+  background-color: #333;
+  border-radius: 3px;
+}
+
+.settings {
+  border-left: 1px solid #fff;
+}
+
+.setting {
+  padding: 0 30px 0 0;
+  background-color: #333;
+  border-bottom: 1px dotted #fff;
+  border-radius: 3px;
+  position: relative;
+
+  &:last-child {
+    border: none;
+  }
+
+  > p {
+    padding: 8px;
+    color: #fff;
+  }
+}
