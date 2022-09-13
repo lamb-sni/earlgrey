@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRecoilValue, useRecoilState } from "recoil"
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil"
 import ClassNames from "classnames";
 import { selectedProductsAtom, selectedProductsIncludedBonusAtom, isOpenDrawerAtom } from "../../../state/atom";
 import { totalTime } from "../../../data/schedule";
@@ -10,6 +10,7 @@ import style from "./style.module.scss";
 
 const Schedule = () => {
   const selectedProducts = useRecoilValue(selectedProductsAtom);
+  const resetSelectedProducts = useResetRecoilState(selectedProductsAtom);
   const selectedProductsIncludedBonus = useRecoilValue(selectedProductsIncludedBonusAtom);
   const [isOpenDrawer, setIsOpenDrawer] = useRecoilState(isOpenDrawerAtom);
   const [isOpen, setIsOpen] = React.useState(isOpenDrawer);
@@ -69,6 +70,9 @@ const Schedule = () => {
               <div className={style.totalTime}>
                 <p>予想収入：<span>{sumAmount}</span></p>
               </div>
+            </div>
+            <div className={style.delete}>
+              <span onClick={() => { resetSelectedProducts(); }} />
             </div>
           </div>
         </div>

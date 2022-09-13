@@ -135,4 +135,24 @@
   }
 }
 
+.delete {
+  > span {
+    &::after {
+      font-family: "Material Icons";
+      content: "\e872";
+      color: #333;
+      font-size: 24px;
+      border-radius: 50px;
+      position: relative;
+      top: 1px;
+      cursor: pointer;
+      transition: .3s;
+    }
 
+    &:hover {
+      &::after {
+        color: #999;
+      }
+    }
+ }
+}
