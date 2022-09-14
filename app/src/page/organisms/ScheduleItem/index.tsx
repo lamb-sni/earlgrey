@@ -1,7 +1,14 @@
 import * as React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil"
 import ClassNames from "classnames";
-import { selectedProductsAtom, selectedProductsIncludedBonusAtom } from "../../../state/atom";
+import {
+  selectedProductsAtom,
+  selectedProductsIncludedBonusAtom,
+  selectedProductDetailAtom,
+  selectedCategoryAtom,
+} from "../../../state/atom";
+import { products } from "../../../data";
+import { CategoriesKey } from "../../../data/categories";
 import * as popularity from "../../../data/popularity";
 import * as demand from "../../../data/demand";
 import PopoverMenu from "../../../component/PopoverMenu";
@@ -10,6 +17,9 @@ import style from "./style.module.scss";
 const ScheduleItem = () => {
   const setSelectedProductsIncludedBonus = useSetRecoilState(selectedProductsIncludedBonusAtom);
   const [selectedProducts, setSelectedProducts] = useRecoilState(selectedProductsAtom);
+  const setSelectedProductDetail = useSetRecoilState(selectedProductDetailAtom);
+  const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
+  const [selectedProductName, setSelectedProductName] = React.useState("");
   const [isBonusArr, setIsBonusArr] = React.useState([] as boolean[]);
   const isEmpty = selectedProducts.length === 1;
 
@@ -37,6 +47,23 @@ const ScheduleItem = () => {
     setSelectedProductsIncludedBonus(result);
   }, [isBonusArr]);
 
+
+  React.useEffect(() => {
+    if (!selectedProductName) {
+      return;
+    }
+    Object.values(products).map(o => {
+      Object.values(o).map(d => {
+        if (d.name === selectedProductName) {
+          setSelectedCategory(d.category as CategoriesKey);
+          setSelectedProductDetail(d);
+        }
+        return null;
+      });
+      return null;
+    });
+  }, [selectedProductName, setSelectedProductDetail, setSelectedCategory]);
+
   if (isEmpty) {
     return (
       <div className={ClassNames(style.wrapper)}>
@@ -54,7 +81,12 @@ const ScheduleItem = () => {
           }
           return (
             <div className={style.itemWrapper} key={d.name + idx.toString()}>
-              <div className={style.item} >
+              <div
+                className={style.item}
+                onClick={() => {
+                  setSelectedProductName(d.name);
+                }}
+              >
                 <p>{d.name}</p>
                 <p>作業時間：{d.schedule.label}</p>
                 <p>基本取引額 ：{d.amount}</p>
