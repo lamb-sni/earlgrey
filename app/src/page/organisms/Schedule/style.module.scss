@@ -154,5 +154,39 @@
         color: #999;
       }
     }
- }
+  }
+}
+
+
+@media only screen and (max-width:600px) {
+  .wrapper {
+    width: 100%;
+    height: calc(100vh - 228px);
+    font-size: 14px;
+    top: auto;
+    bottom: 158px;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .inner {
+    flex-direction: column-reverse;
+  }
+
+  .status {
+    margin: 0 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .items {
+    width: 100%;
+  }
+
+  .toggle {
+    display: none;
+  }
 }

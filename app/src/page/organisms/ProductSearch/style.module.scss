@@ -48,3 +48,17 @@
   opacity: 0;
   visibility: hidden;
 }
+
+@media only screen and (max-width:600px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .inputWrapper {
+    display: block;
+  }
+
+  .input {
+    width: 100%;
+  }
+}

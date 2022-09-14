@@ -13,3 +13,20 @@
 .heading {
   margin: 0 0 8px;
 }
+
+
+@media only screen and (max-width:600px) {
+  .isOpenDrawer {
+    width: 100%;
+  }
+
+  .wrapper {
+    padding: 0 0 8px;
+    font-size: 14px;
+    height: 150px;
+    position: fixed;
+    bottom: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}

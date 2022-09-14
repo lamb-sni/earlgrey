@@ -64,3 +64,18 @@
     color: #666;
   }
 }
+
+@media only screen and (max-width:600px) {
+  .icon {
+    height: 37px;
+
+    &::after {
+      right: 6px;
+      top: 10px;
+    }
+  }
+
+  .popover {
+    right: 0;
+  }
+}
