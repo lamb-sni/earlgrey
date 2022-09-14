@@ -80,8 +80,7 @@ const ProductSearch = () => {
           targetProductNameArr.length
           ? <Tag
               data={tagData}
-              onClick={v => { setSelectedProductName(v); }}
-              onClickOption={v => {
+              onClick={v => {
                 const obj = getProductForScheduleByName(v);
                 if (!obj) {
                   return;
@@ -94,7 +93,6 @@ const ProductSearch = () => {
                 }]));
                 setSelectedProductName(v);
               }}
-              optionType="add"
             />
           : <p>対象となる島産品がありません</p>
         }

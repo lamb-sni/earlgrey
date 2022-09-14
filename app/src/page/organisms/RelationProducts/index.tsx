@@ -60,22 +60,11 @@ const RelationProduct = () => {
             });
             return null;
           });
-        }}
-        onClickOption={v => {
+
           const obj = getProductForScheduleByName(v);
           if (!obj) {
             return;
           }
-          relationProducts.map(o => {
-            Object.values(o).map(d => {
-              if (d.name === v) {
-                setDetail(d);
-                setSelectedCategory(d.category as CategoriesKey);
-              }
-              return null;
-            });
-            return null;
-          });
           setAddedProducts(addedProducts.concat([{
             ...obj,
             popularity: "usually" as PopularityKey,
@@ -83,7 +72,6 @@ const RelationProduct = () => {
             isBonus: false
           }]));
         }}
-        optionType="add"
       />
     </div>
   );
