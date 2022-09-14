@@ -24,10 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env PUBLIC_URL=/earlgrey react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gh-deploy": "gh-pages -d build"
+    "gh-deploy": "yarn build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "gh-pages": "^4.0.0"
   }
 }
