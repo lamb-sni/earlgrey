@@ -1,7 +1,7 @@
 .wrapper {
   padding: 16px 16px 16px;
   width: 50%;
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
   position: absolute;
   top: 0;
@@ -161,7 +161,7 @@
 @media only screen and (max-width:600px) {
   .wrapper {
     width: 100%;
-    height: calc(100vh - 228px);
+    height: calc(100% - 228px);
     font-size: 14px;
     top: auto;
     bottom: 158px;
