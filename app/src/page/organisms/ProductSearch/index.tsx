@@ -73,6 +73,7 @@ const ProductSearch = () => {
           onChange={e => { setWord(e.target.value); }}
           onFocus={() => { setIsOpen(true); }}
           onBlur={() => { setIsOpen(false); }}
+          placeholder="島産品を検索"
         />
       </div>
       <div className={ClassNames(style.result, { [style.isHide]: !isOpen })}>

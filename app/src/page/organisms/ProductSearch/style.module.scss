@@ -23,6 +23,10 @@
   border: 1px solid #999;
   border-radius: 3px;
 
+  &::placeholder {
+    color: #999;
+  }
+
   &:active {
     border: 1px solid #666;
   }
